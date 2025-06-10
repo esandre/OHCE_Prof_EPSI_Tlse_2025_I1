@@ -43,4 +43,17 @@ public class OhceTest
         // ALORS "Bien dit !" est absent
         Assert.DoesNotContain("Bien dit !", résultat);
     }
+
+    [Theory]
+    [InlineData("test")]
+    [InlineData("kayak")]
+    public void BonjourAvantRéponse(string chaîne)
+    {
+        // ETANT DONNE une chaîne
+        // QUAND on l'envoie au détecteur de palindrome
+        var résultat = DétecteurPalindrome.Inverser(chaîne);
+
+        // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
+        Assert.StartsWith("Bonjour", résultat);
+    }
 }
