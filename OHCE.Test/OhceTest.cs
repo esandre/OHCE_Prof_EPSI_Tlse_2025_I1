@@ -56,4 +56,17 @@ public class OhceTest
         // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
         Assert.StartsWith("Bonjour" + Environment.NewLine, résultat);
     }
+
+    [Theory]
+    [InlineData("test")]
+    [InlineData("kayak")]
+    public void AuRevoirAprèsRéponse(string chaîne)
+    {
+        // ETANT DONNE une chaîne
+        // QUAND on l'envoie au détecteur de palindrome
+        var résultat = DétecteurPalindrome.Inverser(chaîne);
+
+        // ALORS "Au revoir." est renvoyé sur la dernière ligne
+        Assert.EndsWith(Environment.NewLine + "Au revoir.", résultat);
+    }
 }
