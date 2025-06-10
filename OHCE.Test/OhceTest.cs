@@ -28,7 +28,7 @@ public class OhceTest
         
         // ALORS il est renvoyé
         // ET "Bien dit !" est écrit sur la ligne suivante.
-        Assert.Equal(palindrome + Environment.NewLine + "Bien dit !", résultat);
+        Assert.EndsWith(palindrome + Environment.NewLine + "Bien dit !", résultat);
     }
 
     [Fact]
@@ -54,6 +54,6 @@ public class OhceTest
         var résultat = DétecteurPalindrome.Inverser(chaîne);
 
         // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
-        Assert.StartsWith("Bonjour", résultat);
+        Assert.StartsWith("Bonjour" + Environment.NewLine, résultat);
     }
 }
