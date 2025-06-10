@@ -14,7 +14,7 @@ public class OhceTest
         var résultat = DétecteurPalindrome.Inverser(chaîne);
 
         // ALORS elle est renvoyée à l'envers
-        Assert.Equal(attendu, résultat);
+        Assert.Contains(attendu, résultat);
     }
 
     [Fact]
