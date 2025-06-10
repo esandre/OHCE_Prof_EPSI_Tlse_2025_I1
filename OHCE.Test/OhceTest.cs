@@ -1,21 +1,19 @@
 ﻿using OHCE_Prof;
 
-namespace OHCE.Test
+namespace OHCE.Test;
+
+public class OhceTest
 {
-    public class OhceTest
+    [Theory]
+    [InlineData("test", "tset")]
+    [InlineData("kayak", "kayak")]
+    public void RenvoieInversé(string chaîne, string attendu)
     {
-        [Fact]
-        public void RenvoieInversé()
-        {
-            // ETANT DONNE une chaîne
-            const string chaîne = "test";
+        // ETANT DONNE une chaîne
+        // QUAND on l'envoie au détecteur de palindrome
+        var résultat = DétecteurPalindrome.Inverser(chaîne);
 
-            // QUAND on l'envoie au détecteur de palindrome
-            var résultat = DétecteurPalindrome.Inverser(chaîne);
-
-            // ALORS elle est renvoyée à l'envers
-            const string attendu = "tset";
-            Assert.Equal(attendu, résultat);
-        }
+        // ALORS elle est renvoyée à l'envers
+        Assert.Equal(attendu, résultat);
     }
 }
