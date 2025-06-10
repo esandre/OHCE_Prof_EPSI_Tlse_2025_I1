@@ -28,7 +28,7 @@ public class OhceTest
         
         // ALORS il est renvoyé
         // ET "Bien dit !" est écrit sur la ligne suivante.
-        Assert.EndsWith(palindrome + Environment.NewLine + "Bien dit !", résultat);
+        Assert.Contains(palindrome + Environment.NewLine + "Bien dit !", résultat);
     }
 
     [Fact]

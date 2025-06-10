@@ -7,7 +7,7 @@ public class DétecteurPalindrome
         var miroir = new string(chaîne.Reverse().ToArray());
 
         if (miroir.Equals(chaîne))
-            return "Bonjour" + Environment.NewLine + miroir + Environment.NewLine + "Bien dit !";
-        return "Bonjour" + Environment.NewLine + miroir;
+            return "Bonjour" + Environment.NewLine + miroir + Environment.NewLine + "Bien dit !" + Environment.NewLine + "Au revoir.";
+        return "Bonjour" + Environment.NewLine + miroir + Environment.NewLine + "Au revoir.";
     }
 }
