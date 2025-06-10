@@ -30,4 +30,17 @@ public class OhceTest
         // ET "Bien dit !" est écrit sur la ligne suivante.
         Assert.Equal(palindrome + Environment.NewLine + "Bien dit !", résultat);
     }
+
+    [Fact]
+    public void PasBienDitPasPalindrome()
+    {
+        // ETANT DONNE une chaîne n'étant pas un palindrome
+        const string nonPalindrome = "cookie";
+
+        // QUAND on l'envoie au détecteur de palindrome
+        var résultat = DétecteurPalindrome.Inverser(nonPalindrome);
+
+        // ALORS "Bien dit !" est absent
+        Assert.DoesNotContain("Bien dit !", résultat);
+    }
 }
