@@ -28,7 +28,7 @@ public class OhceTest
         
         // ALORS il est renvoyé
         // ET "Bien dit !" est écrit sur la ligne suivante.
-        Assert.Contains(palindrome + Environment.NewLine + "Bien dit !", résultat);
+        Assert.Contains(palindrome + Environment.NewLine + Expressions.Félicitations, résultat);
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public class OhceTest
         var résultat = DétecteurPalindrome.Inverser(nonPalindrome);
 
         // ALORS "Bien dit !" est absent
-        Assert.DoesNotContain("Bien dit !", résultat);
+        Assert.DoesNotContain(Expressions.Félicitations, résultat);
     }
 
     [Theory]
@@ -54,7 +54,7 @@ public class OhceTest
         var résultat = DétecteurPalindrome.Inverser(chaîne);
 
         // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
-        Assert.StartsWith("Bonjour" + Environment.NewLine, résultat);
+        Assert.StartsWith(Expressions.Salutations + Environment.NewLine, résultat);
     }
 
     [Theory]
@@ -67,6 +67,6 @@ public class OhceTest
         var résultat = DétecteurPalindrome.Inverser(chaîne);
 
         // ALORS "Au revoir." est renvoyé sur la dernière ligne
-        Assert.EndsWith(Environment.NewLine + "Au revoir.", résultat);
+        Assert.EndsWith(Environment.NewLine + Expressions.Acquittance, résultat);
     }
 }
