@@ -2,9 +2,14 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("Hello, World!");
+            while (true)
+            {
+                Console.Write("> ");
+                var input = Console.ReadLine() ?? throw new InvalidOperationException("Aucune saisie");
+                Console.WriteLine(input + " => " + DétecteurPalindrome.Inverser(input));
+            }
         }
     }
 }
