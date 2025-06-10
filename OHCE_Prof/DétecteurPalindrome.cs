@@ -4,6 +4,6 @@ public class DétecteurPalindrome
 {
     public static string Inverser(string chaîne)
     {
-        return "tset";
+        return new string(chaîne.Reverse().ToArray());
     }
 }
