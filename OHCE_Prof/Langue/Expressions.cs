@@ -1,4 +1,4 @@
-﻿namespace OHCE_Prof;
+﻿namespace OHCE_Prof.Langue;
 
 public static class Expressions
 {

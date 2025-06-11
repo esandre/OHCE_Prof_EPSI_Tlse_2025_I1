@@ -1,23 +1,14 @@
-﻿namespace OHCE_Prof;
+﻿using OHCE_Prof.Langue;
+
+namespace OHCE_Prof;
 
 public class DétecteurPalindrome
 {
     private readonly string _félicitations;
 
-    public DétecteurPalindrome(LangueFrançaise langue)
+    public DétecteurPalindrome(ILangue langue)
     {
-        _félicitations = Expressions.Félicitations;
-
-    }
-
-    public DétecteurPalindrome(LangueAnglaise langue)
-    {
-        _félicitations = Expressions.Congratulations;
-    }
-
-    public DétecteurPalindrome(LangueParDéfaut langue)
-    {
-        _félicitations = string.Empty;
+        _félicitations = langue.Féliciter();
     }
 
     public string Inverser(string chaîne)

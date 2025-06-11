@@ -1,13 +1,23 @@
 ﻿using OHCE_Prof;
+using OHCE_Prof.Langue;
 
 namespace OHCE.Test.Utilities;
 
 internal class DétecteurPalindromeBuilder
 {
-    public static DétecteurPalindrome Default() => new DétecteurPalindromeBuilder().Build();
+    private ILangue _langue = new LangueParDéfaut();
+
+    public static DétecteurPalindrome Default() 
+        => new DétecteurPalindromeBuilder().Build();
+
+    public DétecteurPalindromeBuilder AyantPourLangue(ILangue langue)
+    {
+        _langue = langue;
+        return this;
+    }
 
     public DétecteurPalindrome Build()
     {
-        return new DétecteurPalindrome(new LangueParDéfaut());
+        return new DétecteurPalindrome(_langue);
     }
 }
