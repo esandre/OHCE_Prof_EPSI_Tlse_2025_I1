@@ -1,4 +1,5 @@
 ﻿using OHCE_Prof;
+using OHCE.Test.Utilities;
 
 namespace OHCE.Test;
 
@@ -11,24 +12,38 @@ public class OhceTest
     {
         // ETANT DONNE une chaîne
         // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindrome.Inverser(chaîne);
+        var résultat = DétecteurPalindromeBuilder.Default().Inverser(chaîne);
 
         // ALORS elle est renvoyée à l'envers
         Assert.Contains(attendu, résultat);
     }
 
     [Fact]
-    public void PalindromeBienDit()
+    public void PalindromeBienDitFr()
     {
         // ETANT DONNE un palindrome
         const string palindrome = "kayak";
 
         // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindrome.Inverser(palindrome);
+        var résultat = new DétecteurPalindrome(new LangueFrançaise()).Inverser(palindrome);
         
         // ALORS il est renvoyé
         // ET "Bien dit !" est écrit sur la ligne suivante.
         Assert.Contains(palindrome + Environment.NewLine + Expressions.Félicitations, résultat);
+    }
+
+    [Fact]
+    public void PalindromeBienDitEn()
+    {
+        // ETANT DONNE un palindrome
+        const string palindrome = "kayak";
+
+        // QUAND on l'envoie au détecteur de palindrome
+        var résultat = new DétecteurPalindrome(new LangueAnglaise()).Inverser(palindrome);
+        
+        // ALORS il est renvoyé
+        // ET "Bien dit !" est écrit sur la ligne suivante.
+        Assert.Contains(palindrome + Environment.NewLine + Expressions.Congratulations, résultat);
     }
 
     [Fact]
@@ -38,7 +53,7 @@ public class OhceTest
         const string nonPalindrome = "cookie";
 
         // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindrome.Inverser(nonPalindrome);
+        var résultat = DétecteurPalindromeBuilder.Default().Inverser(nonPalindrome);
 
         // ALORS "Bien dit !" est absent
         Assert.DoesNotContain(Expressions.Félicitations, résultat);
@@ -51,7 +66,7 @@ public class OhceTest
     {
         // ETANT DONNE une chaîne
         // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindrome.Inverser(chaîne);
+        var résultat = DétecteurPalindromeBuilder.Default().Inverser(chaîne);
 
         // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
         Assert.StartsWith(Expressions.Salutations + Environment.NewLine, résultat);
@@ -64,7 +79,7 @@ public class OhceTest
     {
         // ETANT DONNE une chaîne
         // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindrome.Inverser(chaîne);
+        var résultat = DétecteurPalindromeBuilder.Default().Inverser(chaîne);
 
         // ALORS "Au revoir." est renvoyé sur la dernière ligne
         Assert.EndsWith(Environment.NewLine + Expressions.Acquittance, résultat);

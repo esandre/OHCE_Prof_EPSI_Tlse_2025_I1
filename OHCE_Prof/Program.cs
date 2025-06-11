@@ -8,7 +8,7 @@
             {
                 Console.Write("> ");
                 var input = Console.ReadLine() ?? throw new InvalidOperationException("Aucune saisie");
-                Console.WriteLine(input + " => " + DétecteurPalindrome.Inverser(input));
+                Console.WriteLine(input + " => " + new DétecteurPalindrome(new LangueFrançaise()).Inverser(input));
             }
         }
     }
