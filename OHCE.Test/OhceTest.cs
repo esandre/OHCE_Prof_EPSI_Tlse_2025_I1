@@ -60,10 +60,18 @@ public class OhceTest
 
     public static IEnumerable<object[]> LanguesEtChaînesEtHeuresPossibles()
     {
-        yield return [new LangueAléatoire(), "test", new TimeOnly(6, 0)];
-        yield return [new LangueAléatoire(), "kayak", new TimeOnly(6, 0)];
-        yield return [new LangueStub(), "test", new TimeOnly(6, 0)];
-        yield return [new LangueStub(), "kayak", new TimeOnly(6, 0)];
+        TimeOnly[] heuresRemarquables = [
+            new (0, 0), 
+            new (Random.Shared.Next(0, 24), Random.Shared.Next(0, 60))
+        ];
+
+        foreach (var heureRemarquable in heuresRemarquables)
+        {
+            yield return [new LangueAléatoire(), "test", heureRemarquable];
+            yield return [new LangueAléatoire(), "kayak", heureRemarquable];
+            yield return [new LangueStub(), "test", heureRemarquable];
+            yield return [new LangueStub(), "kayak", heureRemarquable];
+        }
     }
 
     // 6:00 - 11h59 - Matin
