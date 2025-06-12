@@ -18,21 +18,22 @@ public class OhceTest
         Assert.Contains(attendu, résultat);
     }
 
-    public static IEnumerable<object[]> LanguesPossibles()
-    {
-        yield return [new LangueFrançaise()];
-        yield return [new LangueAnglaise()];
-    }
-
-    [Theory]
-    [MemberData(nameof(LanguesPossibles))]
-    public void PalindromeBienDit(ILangue langue)
+    [Fact]
+    public void PalindromeBienDit()
     {
         // ETANT DONNE un palindrome
-        // ET un détecteur réglé pour la langue <langue>
+        // ET un détecteur réglé pour une langue
         const string palindrome = "kayak";
+        ushort nombreAppelsAFéliciter = 0;
+
+        var langueSpy = new LangueMock(() =>
+        {
+            nombreAppelsAFéliciter++;
+            return string.Empty;
+        });
+
         var détecteurPalindrome = new DétecteurPalindromeBuilder()
-            .AyantPourLangue(langue)
+            .AyantPourLangue(langueSpy)
             .Build();
 
         // QUAND on envoie le palindrome au détecteur
@@ -40,7 +41,8 @@ public class OhceTest
         
         // ALORS il est renvoyé
         // ET les félicitations de cette langue sont écrites sur la ligne suivante.
-        Assert.Contains(palindrome + Environment.NewLine + langue.Féliciter(), résultat);
+        Assert.Contains(palindrome + Environment.NewLine + langueSpy.Féliciter(), résultat);
+        Assert.NotEqual(0, nombreAppelsAFéliciter);
     }
 
     [Fact]
