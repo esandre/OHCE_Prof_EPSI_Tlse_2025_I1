@@ -2,7 +2,7 @@
 
 namespace OHCE.Test.Utilities;
 
-public class LangueParDéfaut : ILangue
+public class LangueStub : ILangue
 {
     public string Féliciter() => string.Empty;
 }

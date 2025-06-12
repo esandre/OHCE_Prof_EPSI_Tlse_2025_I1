@@ -18,41 +18,29 @@ public class OhceTest
         Assert.Contains(attendu, résultat);
     }
 
-    [Fact]
-    public void PalindromeBienDitFr()
+    public static IEnumerable<object[]> LanguesPossibles()
+    {
+        yield return [new LangueFrançaise()];
+        yield return [new LangueAnglaise()];
+    }
+
+    [Theory]
+    [MemberData(nameof(LanguesPossibles))]
+    public void PalindromeBienDit(ILangue langue)
     {
         // ETANT DONNE un palindrome
-        // ET un détecteur réglé pour la langue française
+        // ET un détecteur réglé pour la langue <langue>
         const string palindrome = "kayak";
         var détecteurPalindrome = new DétecteurPalindromeBuilder()
-            .AyantPourLangue(new LangueFrançaise())
+            .AyantPourLangue(langue)
             .Build();
 
         // QUAND on envoie le palindrome au détecteur
         var résultat = détecteurPalindrome.Inverser(palindrome);
         
         // ALORS il est renvoyé
-        // ET "Bien dit !" est écrit sur la ligne suivante.
-        Assert.Contains(palindrome + Environment.NewLine + Expressions.Félicitations, résultat);
-    }
-
-    [Fact]
-    public void PalindromeBienDitEn()
-    {
-        // ETANT DONNE un palindrome
-        // // ET un détecteur réglé pour la langue anglaise
-        const string palindrome = "kayak";
-        var détecteurPalindrome = new DétecteurPalindromeBuilder()
-            .AyantPourLangue(new LangueAnglaise())
-            .Build();
-
-        // QUAND on l'envoie au détecteur de palindrome
-        var résultat = détecteurPalindrome
-            .Inverser(palindrome);
-        
-        // ALORS il est renvoyé
-        // ET "Well said !" est écrit sur la ligne suivante.
-        Assert.Contains(palindrome + Environment.NewLine + Expressions.Congratulations, résultat);
+        // ET les félicitations de cette langue sont écrites sur la ligne suivante.
+        Assert.Contains(palindrome + Environment.NewLine + langue.Féliciter(), résultat);
     }
 
     [Fact]

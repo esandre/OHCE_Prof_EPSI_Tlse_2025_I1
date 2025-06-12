@@ -5,7 +5,7 @@ namespace OHCE.Test.Utilities;
 
 internal class DétecteurPalindromeBuilder
 {
-    private ILangue _langue = new LangueParDéfaut();
+    private ILangue _langue = new LangueStub();
 
     public static DétecteurPalindrome Default() 
         => new DétecteurPalindromeBuilder().Build();
