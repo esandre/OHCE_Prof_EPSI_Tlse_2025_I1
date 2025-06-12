@@ -58,12 +58,12 @@ public class OhceTest
         Assert.DoesNotContain(Expressions.Félicitations, résultat);
     }
 
-    public static IEnumerable<object[]> LanguesEtChaînesPossibles()
+    public static IEnumerable<object[]> LanguesEtChaînesEtHeuresPossibles()
     {
-        yield return [new LangueAléatoire(), "test"];
-        yield return [new LangueAléatoire(), "kayak"];
-        yield return [new LangueStub(), "test"];
-        yield return [new LangueStub(), "kayak"];
+        yield return [new LangueAléatoire(), "test", new TimeOnly(6, 0)];
+        yield return [new LangueAléatoire(), "kayak", new TimeOnly(6, 0)];
+        yield return [new LangueStub(), "test", new TimeOnly(6, 0)];
+        yield return [new LangueStub(), "kayak", new TimeOnly(6, 0)];
     }
 
     // 6:00 - 11h59 - Matin
@@ -72,13 +72,12 @@ public class OhceTest
     // 21h - 5:59 - Nuit
 
     [Theory]
-    [MemberData(nameof(LanguesEtChaînesPossibles))]
-    public void SalutationsMatinAvantRéponse(ILangue langue, string chaîne)
+    [MemberData(nameof(LanguesEtChaînesEtHeuresPossibles))]
+    public void SalutationsAvantRéponse(ILangue langue, string chaîne, TimeOnly heure)
     {
         // ETANT DONNE une chaîne
         // ET un détecteur de palindrome configuré pour une langue
-        // ET que nous sommes le matin
-        var heure = new TimeOnly(6, 00);
+        // ET que nous sommes <heure>
         var détecteurPalindrome = new DétecteurPalindromeBuilder()
             .AyantPourLangue(langue)
             .AyantUneHorlogeFixéeA(heure)
