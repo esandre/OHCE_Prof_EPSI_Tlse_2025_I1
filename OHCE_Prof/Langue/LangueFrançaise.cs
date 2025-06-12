@@ -6,4 +6,9 @@ public class LangueFrançaise : ILangue
     {
         return Expressions.Félicitations;
     }
+
+    public string Salutations()
+    {
+        return Expressions.Salutations;
+    }
 }

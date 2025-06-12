@@ -3,4 +3,5 @@
 public interface ILangue
 {
     string Féliciter();
+    string Salutations();
 }

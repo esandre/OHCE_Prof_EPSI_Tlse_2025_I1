@@ -58,18 +58,29 @@ public class OhceTest
         Assert.DoesNotContain(Expressions.Félicitations, résultat);
     }
 
+    public static IEnumerable<object[]> LanguesEtChaînesPossibles()
+    {
+        yield return [new LangueAléatoire(), "test"];
+        yield return [new LangueAléatoire(), "kayak"];
+        yield return [new LangueStub(), "test"];
+        yield return [new LangueStub(), "kayak"];
+    }
+
     [Theory]
-    [InlineData("test")]
-    [InlineData("kayak")]
-    public void BonjourAvantRéponse(string chaîne)
+    [MemberData(nameof(LanguesEtChaînesPossibles))]
+    public void BonjourAvantRéponse(ILangue langue, string chaîne)
     {
         // ETANT DONNE une chaîne
-        // QUAND on l'envoie au détecteur de palindrome
-        var résultat = DétecteurPalindromeBuilder.Default()
-            .Inverser(chaîne);
+        // ET un détecteur de palindrome configuré pour une langue
+        var détecteurPalindrome = new DétecteurPalindromeBuilder()
+            .AyantPourLangue(langue)
+            .Build();
 
-        // ALORS "Bonjour" est renvoyé sur la ligne précédant la réponse
-        Assert.StartsWith(Expressions.Salutations + Environment.NewLine, résultat);
+        // QUAND on envoie la chaîne au détecteur de palindrome
+        var résultat = détecteurPalindrome.Inverser(chaîne);
+
+        // ALORS les salutations de cette langue sont renvoyés sur la ligne précédant la réponse
+        Assert.StartsWith(langue.Salutations() + Environment.NewLine, résultat);
     }
 
     [Theory]
