@@ -80,7 +80,7 @@ public class OhceTest
         var résultat = détecteurPalindrome.Inverser(chaîne);
 
         // ALORS les salutations de cette langue sont renvoyés sur la ligne précédant la réponse
-        Assert.StartsWith(langue.Salutations() + Environment.NewLine, résultat);
+        Assert.StartsWith(langue.Saluer() + Environment.NewLine, résultat);
     }
 
     [Theory]

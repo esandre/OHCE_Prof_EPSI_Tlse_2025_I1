@@ -7,7 +7,7 @@ public class LangueAnglaise : ILangue
         return Expressions.Congratulations;
     }
 
-    public string Salutations()
+    public string Saluer()
     {
         return Expressions.Hello;
     }

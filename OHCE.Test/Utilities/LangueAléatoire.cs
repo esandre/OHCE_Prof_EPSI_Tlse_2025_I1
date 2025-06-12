@@ -21,6 +21,6 @@ namespace OHCE.Test.Utilities
 
         public string Féliciter() => _félicitations;
 
-        public string Salutations() => _salutations;
+        public string Saluer() => _salutations;
     }
 }
