@@ -1,21 +1,20 @@
 ﻿using OHCE_Prof.Langue;
 
-namespace OHCE_Prof
+namespace OHCE_Prof;
+
+internal class Program
 {
-    internal class Program
+    private static void Main()
     {
-        private static void Main()
+        while (true)
         {
-            while (true)
-            {
-                Console.Write("> ");
-                var input = Console.ReadLine() 
-                            ?? throw new InvalidOperationException("Aucune saisie");
-                Console.WriteLine(
-                    input 
-                    + " => " 
-                    + new DétecteurPalindrome(new LangueFrançaise()).Inverser(input));
-            }
+            Console.Write("> ");
+            var input = Console.ReadLine() 
+                        ?? throw new InvalidOperationException("Aucune saisie");
+            Console.WriteLine(
+                input 
+                + " => " 
+                + new DétecteurPalindrome(new LangueFrançaise(), TimeOnly.FromDateTime(DateTime.Now)).Inverser(input));
         }
     }
 }

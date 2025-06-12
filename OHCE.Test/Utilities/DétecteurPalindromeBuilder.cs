@@ -6,6 +6,7 @@ namespace OHCE.Test.Utilities;
 internal class DétecteurPalindromeBuilder
 {
     private ILangue _langue = new LangueStub();
+    private TimeOnly _heure = TimeOnly.MinValue;
 
     public static DétecteurPalindrome Default() 
         => new DétecteurPalindromeBuilder().Build();
@@ -18,6 +19,12 @@ internal class DétecteurPalindromeBuilder
 
     public DétecteurPalindrome Build()
     {
-        return new DétecteurPalindrome(_langue);
+        return new DétecteurPalindrome(_langue, _heure);
+    }
+
+    public DétecteurPalindromeBuilder AyantUneHorlogeFixéeA(TimeOnly heure)
+    {
+        _heure = heure;
+        return this;
     }
 }

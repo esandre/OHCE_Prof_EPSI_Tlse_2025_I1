@@ -3,5 +3,5 @@
 public interface ILangue
 {
     string Féliciter();
-    string Saluer();
+    string Saluer(TimeOnly heure);
 }

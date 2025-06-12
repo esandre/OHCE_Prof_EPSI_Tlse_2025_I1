@@ -7,10 +7,10 @@ public class DétecteurPalindrome
     private readonly string _félicitations;
     private readonly string _salutations;
 
-    public DétecteurPalindrome(ILangue langue)
+    public DétecteurPalindrome(ILangue langue, TimeOnly heureActuelle)
     {
         _félicitations = langue.Féliciter();
-        _salutations = langue.Saluer();
+        _salutations = langue.Saluer(heureActuelle);
     }
 
     public string Inverser(string chaîne)

@@ -66,21 +66,29 @@ public class OhceTest
         yield return [new LangueStub(), "kayak"];
     }
 
+    // 6:00 - 11h59 - Matin
+    // 12:00 - 17h59 - Après-midi
+    // 18:00 - 20h59 - Soirée
+    // 21h - 5:59 - Nuit
+
     [Theory]
     [MemberData(nameof(LanguesEtChaînesPossibles))]
-    public void BonjourAvantRéponse(ILangue langue, string chaîne)
+    public void SalutationsMatinAvantRéponse(ILangue langue, string chaîne)
     {
         // ETANT DONNE une chaîne
         // ET un détecteur de palindrome configuré pour une langue
+        // ET que nous sommes le matin
+        var heure = new TimeOnly(6, 00);
         var détecteurPalindrome = new DétecteurPalindromeBuilder()
             .AyantPourLangue(langue)
+            .AyantUneHorlogeFixéeA(heure)
             .Build();
 
         // QUAND on envoie la chaîne au détecteur de palindrome
         var résultat = détecteurPalindrome.Inverser(chaîne);
 
-        // ALORS les salutations de cette langue sont renvoyés sur la ligne précédant la réponse
-        Assert.StartsWith(langue.Saluer() + Environment.NewLine, résultat);
+        // ALORS les salutations matinales de cette langue sont renvoyés sur la ligne précédant la réponse
+        Assert.StartsWith(langue.Saluer(heure) + Environment.NewLine, résultat);
     }
 
     [Theory]

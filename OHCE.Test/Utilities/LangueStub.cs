@@ -5,5 +5,5 @@ namespace OHCE.Test.Utilities;
 public class LangueStub : ILangue
 {
     public string Féliciter() => string.Empty;
-    public string Saluer() => string.Empty;
+    public string Saluer(TimeOnly heure) => string.Empty;
 }
