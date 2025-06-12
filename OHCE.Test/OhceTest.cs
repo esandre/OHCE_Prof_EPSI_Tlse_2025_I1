@@ -20,8 +20,8 @@ public class OhceTest
 
     public static IEnumerable<object[]> LanguesPossibles()
     {
-        yield return [new LangueFrançaise()];
-        yield return [new LangueAnglaise()];
+        yield return [new LangueAléatoire()];
+        yield return [new LangueStub()];
     }
 
     [Theory]
@@ -31,6 +31,7 @@ public class OhceTest
         // ETANT DONNE un palindrome
         // ET un détecteur réglé pour la langue <langue>
         const string palindrome = "kayak";
+
         var détecteurPalindrome = new DétecteurPalindromeBuilder()
             .AyantPourLangue(langue)
             .Build();
